@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
+print("DEBUG DB HOST:", os.getenv("DB_HOST"))
 
 mydb = mysql.connector.connect(
     host=os.getenv("DB_HOST"),
