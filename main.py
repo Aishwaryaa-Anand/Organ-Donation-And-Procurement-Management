@@ -5,33 +5,17 @@ import numpy as np
 import os
 import mysql.connector
 
-# 🔍 DEBUG PRINT — remove after testing
-print("DEBUG DB HOST:", os.environ.get("DB_HOST"))
-print("DEBUG DB USER:", os.environ.get("DB_USER"))
-print("DEBUG DB NAME:", os.environ.get("DB_NAME"))
 
-# mydb = mysql.connector.connect(
-#     host=os.environ.get("DB_HOST"),
-#     user=os.environ.get("DB_USER"),
-#     password=os.environ.get("DB_PASSWORD"),
-#     database=os.environ.get("DB_NAME")
-# )
-# mycursor = mydb.cursor(buffered=True)
-
-import os
-import mysql.connector
-from urllib.parse import urlparse
-
-url = urlparse(os.getenv("MYSQL_URL"))
 
 mydb = mysql.connector.connect(
-    host=url.hostname,
-    user=url.username,
-    password=url.password,
-    port=url.port,
-    database=url.path[1:]  # skip the leading '/'
+    host=os.environ.get("DB_HOST"),
+    user=os.environ.get("DB_USER"),
+    password=os.environ.get("DB_PASSWORD"),
+    database=os.environ.get("DB_NAME")
 )
 mycursor = mydb.cursor(buffered=True)
+
+
 
 
 app = Flask(__name__)
