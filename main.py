@@ -1,27 +1,23 @@
 from flask import Flask,render_template,session,request,redirect,url_for,flash
-import mysql.connector,hashlib
+import hashlib
 import matplotlib.pyplot as plt
 import numpy as np
-
-from dotenv import load_dotenv
 import os
+import mysql.connector
 
-if not os.getenv("DB_HOST"):
-    try:
-        from dotenv import load_dotenv
-        load_dotenv()
-    except:
-        print("dotenv not loaded")
-
-print("DEBUG DB HOST:", os.getenv("DB_HOST"))
+# 🔍 DEBUG PRINT — remove after testing
+print("DEBUG DB HOST:", os.environ.get("DB_HOST"))
+print("DEBUG DB USER:", os.environ.get("DB_USER"))
+print("DEBUG DB NAME:", os.environ.get("DB_NAME"))
 
 mydb = mysql.connector.connect(
-    host=os.getenv("DB_HOST"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    database=os.getenv("DB_NAME")
+    host=os.environ.get("DB_HOST"),
+    user=os.environ.get("DB_USER"),
+    password=os.environ.get("DB_PASSWORD"),
+    database=os.environ.get("DB_NAME")
 )
 mycursor = mydb.cursor(buffered=True)
+
 
 app = Flask(__name__)
 
