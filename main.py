@@ -6,7 +6,13 @@ import numpy as np
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+if not os.getenv("DB_HOST"):
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except:
+        print("dotenv not loaded")
+
 print("DEBUG DB HOST:", os.getenv("DB_HOST"))
 
 mydb = mysql.connector.connect(
