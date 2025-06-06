@@ -5,7 +5,7 @@ import numpy as np
 import os
 import mysql.connector
 
-eee
+
 
 mydb = mysql.connector.connect(
     host=os.environ.get("DB_HOST"),
