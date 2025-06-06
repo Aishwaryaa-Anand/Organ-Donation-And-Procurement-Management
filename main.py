@@ -10,6 +10,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host=os.environ.get("DB_HOST"),
     user=os.environ.get("DB_USER"),
+    port=int(os.getenv("DB_PORT")),
     password=os.environ.get("DB_PASSWORD"),
     database=os.environ.get("DB_NAME")
 )
