@@ -1118,6 +1118,11 @@ def stats():
     return render_template('statistics.html')
 
 if __name__ == "__main__":
+    import os
+
     app.secret_key = 'sec key'
     app.config['SESSION_TYPE'] = 'filesystem'
-    app.run(debug=True)
+
+    port = int(os.environ.get("PORT", 5000))  # Get port from Railway
+    app.run(host="0.0.0.0", port=port)
+
